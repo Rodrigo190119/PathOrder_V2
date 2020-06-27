@@ -1,0 +1,64 @@
+package pe.com.pathOrder.pathOrder2.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
+@Table(name ="proveedor")
+public class Proveedor {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Size(min=10,max=50,message="El nombre del proveedor debe tener entre 10 y 50 caracteres")
+	@Column(name = "nombre", length = 50, nullable = false)
+	private String nombre;
+	@Column(name = "ruc",length =  20,nullable = false)
+	private String Ruc;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "proveedor")
+	private List<OrdenDespacho> ordenesDespacho;
+	
+	public Proveedor() {
+		this.ordenesDespacho = new ArrayList<>();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getRuc() {
+		return Ruc;
+	}
+	public void setRuc(String ruc) {
+		Ruc = ruc;
+	}
+	public List<OrdenDespacho> getOrdenesDespacho() {
+		return ordenesDespacho;
+	}
+	public void setOrdenesDespacho(List<OrdenDespacho> ordenesDespacho) {
+		this.ordenesDespacho = ordenesDespacho;
+	}
+	
+	
+}
