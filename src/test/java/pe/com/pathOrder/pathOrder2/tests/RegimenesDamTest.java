@@ -35,7 +35,7 @@ class RegimenesDamTest {
 		Regimen prueba = new  Regimen();
 		
 		
-		dam.setFob(4000);
+		dam.setFob(2000);
 		prueba.setTipo(" ");
 		
 		if(dam.getFob() <= FOB_MAX) {
